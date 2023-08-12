@@ -1,0 +1,13 @@
+body {
+    text-align: center;
+    padding: 100px;
+    background: rgb(166, 190, 138);
+    border: 1px solid black;
+}
+form {
+    display: inline-block;
+}
+
+input {
+    margin-bottom: 10px;
+}
