@@ -18,4 +18,4 @@ For every time the test will run:
 #### To-Do
 
 - Increment numbers (or make it random) on image output filename
-- GIF version of the function
+
