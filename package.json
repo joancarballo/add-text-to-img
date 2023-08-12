@@ -20,6 +20,7 @@
     "body-parser": "^1.20.2",
     "canvas": "^2.11.2",
     "express": "^4.18.2",
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.0.1",
+    "text-on-gif": "^2.0.13"
   }
 }

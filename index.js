@@ -2,6 +2,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 const fs = require("fs");
 const { createCanvas, loadImage } = require("canvas");
+const TextOnGif = require("text-on-gif");
 
 var app = express();
 var port = process.env.PORT || 3525;
@@ -18,10 +19,11 @@ app.use(bodyParser.json());
 app.listen(port, function () {
   console.log("========================");
   console.log("Generating Image");
-  getImageJPG("El trollsejo rules", "es")
+  getImageJPG("El trollsejo rules")
+  getImageGIF("El trollsejo rules y ahora en GIF");
 });
 
-let getImageJPG = (text, lang) => {
+let getImageJPG = (text) => {
   // (B) SETTINGS
   const sFile = "retard.jpg", // source image
     sSave = "retard-001.jpg", // "save as"
@@ -58,5 +60,33 @@ let getImageJPG = (text, lang) => {
       stream = canvas.createPNGStream();
     stream.pipe(out);
     out.on("finish", () => console.log("Done"));
+  });
+};
+
+
+async function getImageGIF(text) {
+  //create a TextOnGif object
+  var gif = new TextOnGif({
+    file_path: "retard.gif",
+    //path to local file, url or Buffer
+  });
+
+  //get as buffer
+  var buffer = await gif.textOnGif({
+    text: text,
+    get_as_buffer: true,
+  });
+
+  console.log(buffer);
+  gif.on("on frame", (frameIndex) => {
+    gif.font_color = "white";
+    // gif.font_size = "40px"
+  });
+
+  //write as file
+  await gif.textOnGif({
+    text: text,
+    get_as_buffer: false, //set to false to save time
+    write_path: "retard-002.gif",
   });
 };
