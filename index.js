@@ -17,15 +17,26 @@ app.listen(port, function () {
   console.log("Generating JPG");
   getImageJPG("El trollsejo rules")
   console.log("Generating GIF");
-  getImageGIF("El trollsejo rules en GIF");
+  getImageGIF("El trollsejo rules ahora en GIF");
 });
+
+let randomId = () => {
+  let length = 16;
+  let result = "";
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  const charactersLength = characters.length;
+  let counter = 0;
+  while (counter < length) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    counter += 1;
+  }
+  return result;
+}
 
 let getImageJPG = (text) => {
   const sFile = "retard.jpg" // original image
-  const sSave = "retard-001.jpg" // result image
+  const sSave = "retard-" + randomId() + ".gif"; // result image
   const  sText = text
-  const  sX = 80
-  const  sY = 80
 
   loadImage(sFile).then((img) => {
     const canvas = createCanvas(img.width, img.height)
@@ -57,7 +68,7 @@ let getImageJPG = (text) => {
 
 let getImageGIF = async function (text) {
     const gFile = "retard.gif"; // original GIF
-    const gSave = "retard-001.gif"; // result GIF
+    const gSave = "retard-" + randomId() + ".gif"; // result GIF
     const gText = text;
 
 
